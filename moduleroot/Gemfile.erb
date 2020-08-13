@@ -40,7 +40,11 @@ def gem_spec(gem, max_len)
   output
 end
 -%>
+<% if @configs['source'] -%>
+source '<%= @configs['source'] %>'
+<% else -%>
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
+<% fi -%>
 
 def location_for(place_or_version, fake_version = nil)
   git_url_regex = %r{\A(?<url>(https?|git)[:@][^#]*)(#(?<branch>.*))?}
